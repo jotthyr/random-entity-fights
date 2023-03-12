@@ -1,0 +1,37 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type StarshipType {
+  name: String!
+  starshipImg: String!
+}
+
+type EntityType {
+  id: ID!
+  name: String!
+  img: String!
+  mass: Int!
+  starship: StarshipType!
+}
+
+type Query {
+  hello: String!
+  entities: [EntityType!]!
+}
+
+type Mutation {
+  createEntity(input: EntityInput!): EntityType!
+}
+
+input EntityInput {
+  name: String!
+  img: String!
+  mass: Int!
+  starship: Starship!
+}
+
+input Starship {
+  name: String!
+  starshipImg: String!
+}
