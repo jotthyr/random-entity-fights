@@ -20,7 +20,7 @@ const EntityCard: React.FC<IEntityCardProps> = (props) => {
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="140"
+                    height="200"
                     image={sourceType ? props.fightData.img : props.fightData.starship.starshipImg}
                     alt="no image"
                 />

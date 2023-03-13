@@ -4,6 +4,7 @@ import {
     CardsWrapper,
 } from './Cards.style';
 import { IEntityDetailsDataMutation } from '../Content';
+import { observer } from 'mobx-react-lite';
 
 interface ICardsProps {
     fightData: IEntityDetailsDataMutation[];
@@ -14,7 +15,7 @@ interface ICardsProps {
     };
 }
 
-const Cards: React.FC<ICardsProps> = (props) => {
+const Cards: React.FC<ICardsProps> = observer((props) => {
 
     return (
         <CardsWrapper>
@@ -30,6 +31,6 @@ const Cards: React.FC<ICardsProps> = (props) => {
             />
         </CardsWrapper>
     );
-};
+});
 
 export default Cards;

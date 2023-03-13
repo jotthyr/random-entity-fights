@@ -28,7 +28,7 @@ class ContentModel {
                 },
             },
             {
-                name: '???',
+                name: '????',
                 img: '???',
                 mass: 0,
                 starship: {

@@ -1,33 +1,16 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
-export const CREATE_DATA_MUTATION = gql`
+const CREATE_DATA_MUTATION = gql`
     mutation createEntity(
-        $input: {
-            $name: String!,
-            $img: String!,
-            $mass: Int!,
-            $starship: {
-                $name: String!,
-                $starshipImg: String!
-            }
-        }
+        $input: EntityInput!
     ) {
-        createEntity(
-            input: $input: {
-                $name: String!,
-                $img: String!,
-                $mass: Int!,
-                $starship: {
-                    $name: String!,
-                    $starshipImg: String!
-                }
-            }
-        ) {
+        createEntity(input: $input) {
             id
             name
             img
             mass
         }
     }
-
 `;
+
+export default CREATE_DATA_MUTATION;

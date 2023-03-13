@@ -9,7 +9,7 @@ import {
 import Control from './control/Control';
 import Score from './score/Score';
 import { LOAD_PEOPLE, LOAD_STARSHIPS } from '../graphQL/Queries';
-import { CREATE_DATA_MUTATION } from '../graphQL/Mutations';
+import CREATE_DATA_MUTATION from '../graphQL/Mutations';
 import DATA_MUTATION from '../../../DATA_MUTATION.json';
 
 export interface IEntityDetailsDataMutation {
@@ -29,6 +29,10 @@ interface IParticularEntityDataMutation {
 const Content: React.FC = observer(() => {
     const [ContentState] = useState((): ContentModel => new ContentModel());
 
+    const [createUser] = useMutation(CREATE_DATA_MUTATION);
+
+    const getEntities = useQuery(ContentState.sourceType === 'people' ? LOAD_PEOPLE : LOAD_STARSHIPS);
+
     const handleSetSourcePeople = () => {
         ContentState.sourceType = 'people';
     };
@@ -39,19 +43,16 @@ const Content: React.FC = observer(() => {
 
     const handleRandomFight = () => {
         if (ContentState.sourceType === 'people') {
-            const { error, loading, data } = useQuery(LOAD_PEOPLE);
-            ContentState.fightData = data;
+            ContentState.fightData = getEntities.data.entities;
         } else if (ContentState.sourceType === 'starships') {
-            const { error, loading, data } = useQuery(LOAD_STARSHIPS);
-            ContentState.fightData = data;
+            ContentState.fightData = getEntities.data.entitiesStarship;
         }
         ContentState.handleCrew();
         ContentState.handleScore();
     };
 
     useEffect(() => {
-        const [createUser, { error }] = useMutation(CREATE_DATA_MUTATION);
-        const dataMutationArray: IParticularEntityDataMutation[] = JSON.parse(DATA_MUTATION.toString());
+        const dataMutationArray: IParticularEntityDataMutation[] = DATA_MUTATION;
 
         dataMutationArray.forEach((element) => {
             createUser({
@@ -82,9 +83,9 @@ const Content: React.FC = observer(() => {
                 starshipsCrew={ContentState.starshipsCrew}
             />
             <Control
-                onhandleSetSourcePeople={() => handleSetSourcePeople }
-                onhandleSetSourceStarships={() => handleSetSourceStarships }
-                onhandleRandomFight={() => handleRandomFight }
+                onhandleSetSourcePeople={() => handleSetSourcePeople() }
+                onhandleSetSourceStarships={() => handleSetSourceStarships() }
+                onhandleRandomFight={() => handleRandomFight() }
             />
         </ContentWrapper>
     );
