@@ -18,6 +18,7 @@ type EntityType {
 type Query {
   hello: String!
   entities: [EntityType!]!
+  entitiesStarship: [EntityType!]!
 }
 
 type Mutation {

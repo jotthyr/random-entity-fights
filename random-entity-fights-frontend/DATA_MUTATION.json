@@ -1,0 +1,68 @@
+[
+    {
+      "input": {
+        "name": "Commanding Officer: Captain Jean-Luc Picard, Human male",
+        "img": "https://i.ibb.co/4Rr4RD6/Jean-Luc-Picard.jpg",
+        "mass": 100,
+        "starship": {
+          "name": "cebula-class",
+          "starshipImg": "https://i.ibb.co/j581dFk/cebula-class.jpg"
+        }
+      }
+    },
+    {
+      "input": {
+        "name": "Executive Officer: Commander Mackenzie Calhoun, Xenexian Male",
+        "img": "https://i.ibb.co/4s3Ss3n/Mackenzie-Calhoun.jpg",
+        "mass": 90,
+        "starship": {
+          "name": "cebula-class",
+          "starshipImg": "https://i.ibb.co/j581dFk/cebula-class.jpg"
+        }
+      }
+    },
+    {
+      "input": {
+        "name": "Chief Engineer: Lieutenant Geordi Laforge, Human Male",
+        "img": "https://i.ibb.co/qrJqGq6/Lieutenant-Geordi-Laforge.jpg",
+        "mass": 80,
+        "starship": {
+          "name": "cebula-class",
+          "starshipImg": "https://i.ibb.co/j581dFk/cebula-class.jpg"
+        }
+      }
+    },
+    {
+      "input": {
+        "name": "Chief of Security: Lieutenant Natasha Yar, Human Female",
+        "img": "https://i.ibb.co/S0H6CMK/Lieutenant-Natasha-Yar.jpg",
+        "mass": 70,
+        "starship": {
+          "name": "uss-enterprise",
+          "starshipImg": "https://i.ibb.co/pQYf8JZ/uss-enterprise.jpg"
+        }
+      }
+    },
+    {
+      "input": {
+        "name": "Chief Tactical Officer: Lieutenant Junior Grade Jonathan Francis Satchel II, Human Male",
+        "img": "https://i.ibb.co/SRtVnds/Lieutenant-Junior-Grade-Jonathan-Francis-Satchel-II.jpg",
+        "mass": 60,
+        "starship": {
+          "name": "uss-enterprise",
+          "starshipImg": "https://i.ibb.co/pQYf8JZ/uss-enterprise.jpg"
+        }
+      }
+    },
+    {
+      "input": {
+        "name": "Chief Medical Officer: Lieutenant Selar MD, Vulcan Female",
+        "img": "https://i.ibb.co/TcMy3R1/Lieutenant-Selar-MD.jpg",
+        "mass": 50,
+        "starship": {
+          "name": "norway-class",
+          "starshipImg": "https://i.ibb.co/c3VppY8/norway-class.jpg"
+        }
+      }
+    }
+]

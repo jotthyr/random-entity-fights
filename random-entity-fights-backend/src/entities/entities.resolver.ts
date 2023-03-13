@@ -14,7 +14,12 @@ export class EntitiesResolver {
 
   @Query(() => [EntityType])
   async entities() {
-    return this.entitiesService.findAll();
+    return this.entitiesService.findPeople();
+  }
+
+  @Query(() => [EntityType])
+  async entitiesStarship() {
+    return this.entitiesService.findStarships();
   }
 
   @Mutation(() => EntityType)

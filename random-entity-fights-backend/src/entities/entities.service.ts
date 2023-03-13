@@ -15,7 +15,29 @@ export class EntitiesService {
     return await createdEntity.save();
   }
 
-  async findAll(): Promise<Entity[]> {
-    return await this.entityModel.find().exec();
+  async findPeople(): Promise<Entity[]> {
+    const foundEntities = await this.entityModel.find().exec();
+
+    const randomPeople = foundEntities
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 2);
+
+    return randomPeople;
+  }
+
+  async findStarships(): Promise<Entity[]> {
+    const foundEntities = await this.entityModel.find().exec();
+
+    const randomStarships = [
+      ...new Set(foundEntities.map((x) => x.starship.name)),
+    ]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 2);
+
+    return foundEntities.filter(
+      (x) =>
+        x.starship.name === randomStarships[0] ||
+        x.starship.name === randomStarships[1],
+    );
   }
 }

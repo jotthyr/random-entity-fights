@@ -1,5 +1,21 @@
 version: '3.9'
 services:
+  api:
+    container_name: api-container
+    restart: always
+    build: ./random-entity-fights-backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+  client:
+    container_name: client-container
+    restart: always
+    build: ./random-entity-fights-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
   mongo:
     container_name: mongo
     image: mongo:latest
