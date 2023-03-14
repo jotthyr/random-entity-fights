@@ -7,10 +7,6 @@ export const LOAD_PEOPLE = gql`
             name
             img
             mass
-            starship {
-                name
-                starshipImg
-            }
         }
     }
 `;
@@ -18,10 +14,6 @@ export const LOAD_PEOPLE = gql`
 export const LOAD_STARSHIPS = gql`
     query entitiesStarship{
         entitiesStarship {
-            id
-            name
-            img
-            mass
             starship {
                 name
                 starshipImg

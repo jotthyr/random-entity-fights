@@ -16,3 +16,7 @@ export const ColonElement = styled('h1')`
 export const RightScoreElement = styled('h1')`
     margin-right: 200px;
 `;
+
+export const WinWrapper = styled('span')`
+    color: red;
+`;

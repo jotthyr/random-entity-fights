@@ -29,7 +29,7 @@ export const Control: React.FC<IControlProps> = (props) => {
     return (
         <ControlWrapper>
             <FightButton
-                aria-label="fight-button"
+                data-testid='ClickIndicator'
                 onClick={handleRandomFight}
             >
                 RANDOM FIGHT

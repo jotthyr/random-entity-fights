@@ -12,8 +12,13 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
+      // @ts-ignore
+      cors: {
+        origin: true,
+        credentials: true,
+      },
     }),
-    MongooseModule.forRoot('mongodb://localhost:27017/nest'),
+    MongooseModule.forRoot('mongodb://mongo:27017/nest'),
   ],
   controllers: [AppController],
   providers: [AppService],

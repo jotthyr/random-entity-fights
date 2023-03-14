@@ -10,9 +10,11 @@ import { onError } from '@apollo/client/link/error';
 import { MainLayoutWrapper } from './App.style';
 import Content from './components/content/Content';
 
+// @ts-ignore
 const errorLink = onError(({ graphqlErrors, networkError }) => {
     if (graphqlErrors) {
-        graphqlErrors.map(({ message, location, path }) => {
+        // @ts-ignore
+        graphqlErrors.map(({ message }) => {
             // eslint-disable-next-line no-alert
             alert(`Graphql error ${message}`);
         });

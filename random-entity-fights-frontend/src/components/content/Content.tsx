@@ -31,24 +31,32 @@ const Content: React.FC = observer(() => {
 
     const [createUser] = useMutation(CREATE_DATA_MUTATION);
 
-    const getEntities = useQuery(ContentState.sourceType === 'people' ? LOAD_PEOPLE : LOAD_STARSHIPS);
+    const entities = useQuery(ContentState.sourceType === 'people' ? LOAD_PEOPLE : LOAD_STARSHIPS);
 
     const handleSetSourcePeople = () => {
         ContentState.sourceType = 'people';
+        ContentState.score = [0, 0];
+        ContentState.winner = null;
     };
 
     const handleSetSourceStarships = () => {
         ContentState.sourceType = 'starships';
+        ContentState.score = [0, 0];
+        ContentState.winner = null;
     };
 
     const handleRandomFight = () => {
+        entities.refetch();
         if (ContentState.sourceType === 'people') {
-            ContentState.fightData = getEntities.data.entities;
+            ContentState.fightData = entities.data.entities;
         } else if (ContentState.sourceType === 'starships') {
-            ContentState.fightData = getEntities.data.entitiesStarship;
+            ContentState.fightData = entities.data.entitiesStarship;
         }
         ContentState.handleCrew();
         ContentState.handleScore();
+        if (ContentState.sourceType === 'starships') {
+            ContentState.fightData = [...new Map(ContentState.fightData.map((item) => [item.starship.name, item])).values()];
+        }
     };
 
     useEffect(() => {

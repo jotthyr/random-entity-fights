@@ -9,7 +9,7 @@ services:
     depends_on:
       - mongo
   client:
-    container_name: client-container
+    container_name: client-cont
     restart: always
     build: ./random-entity-fights-frontend
     ports:

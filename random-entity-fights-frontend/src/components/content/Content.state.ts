@@ -10,6 +10,8 @@ class ContentModel {
 
     winner: string | null;
 
+    fetchFlag: boolean;
+
     starshipsCrew: {
         leftStarship: number,
         rightStarship: number,
@@ -39,6 +41,7 @@ class ContentModel {
         ];
         this.score = [0, 0];
         this.winner = null;
+        this.fetchFlag = false;
         this.starshipsCrew = {
             leftStarship: 0,
             rightStarship: 0,
@@ -49,12 +52,10 @@ class ContentModel {
 
     public handleCrew = () => {
         if (this.sourceType === 'starships') {
-            const allStarshipsElements = this.fightData.map(item => item.starship.name)
+            const uniqueStarship = [...new Map(this.fightData.map((item) => [item.starship.name, item])).values()].sort(() => Math.random() - 0.5);
 
-            const uniqueStarship = [...new Set(allStarshipsElements)];
-
-            const leftStarship = this.fightData.filter(item => item.starship.name === uniqueStarship[0]).length;
-            const rightStarship = this.fightData.filter(item => item.starship.name === uniqueStarship[1]).length;
+            const leftStarship = this.fightData.filter(item => item.starship.name === uniqueStarship[0].starship.name).length;
+            const rightStarship = this.fightData.filter(item => item.starship.name === uniqueStarship[1].starship.name).length;
 
             this.starshipsCrew = {
                 leftStarship,
@@ -64,20 +65,21 @@ class ContentModel {
     };
 
     public handleScore = () => {
+        this.winner = null;
         if (this.sourceType === 'starships') {
             if (this.starshipsCrew.leftStarship > this.starshipsCrew.rightStarship) {
-                this.score[0] += this.score[0];
+                this.score[0] = this.score[0] + 1;
                 this.winner = 'left';
             } else if (this.starshipsCrew.leftStarship < this.starshipsCrew.rightStarship) {
-                this.score[1] += this.score[1];
+                this.score[1] = this.score[1] + 1;
                 this.winner = 'right';
             }
         } else if (this.sourceType === 'people') {
             if (this.fightData[0].mass > this.fightData[1].mass) {
-                this.score[0] += this.score[0];
+                this.score[0] = this.score[0] + 1;
                 this.winner = 'left';
             } else if (this.fightData[0].mass < this.fightData[1].mass) {
-                this.score[1] += this.score[1];
+                this.score[1] = this.score[1] + 1;
                 this.winner = 'right';
             }
         }

@@ -4,6 +4,7 @@ import {
     LeftScoreElement,
     RightScoreElement,
     ScoreWrapper,
+    WinWrapper,
 } from './Score.style';
 
 interface IScoreProps {
@@ -17,14 +18,14 @@ export const Score: React.FC<IScoreProps> = (props) => {
         <ScoreWrapper>
             <LeftScoreElement>
                 {props.score[0]}
-                {props.winner === 'left' ? 'Win!' : null}
+                {props.winner === 'left' ? <WinWrapper> Win!</WinWrapper> : null}
             </LeftScoreElement>
             <ColonElement>
                 :
             </ColonElement>
             <RightScoreElement>
                 {props.score[1]}
-                {props.winner === 'right' ? 'Win!' : null}
+                {props.winner === 'right' ? <WinWrapper> Win!</WinWrapper> : null}
             </RightScoreElement>
         </ScoreWrapper>
     );
