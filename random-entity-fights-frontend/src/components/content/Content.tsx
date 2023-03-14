@@ -54,9 +54,6 @@ const Content: React.FC = observer(() => {
         }
         ContentState.handleCrew();
         ContentState.handleScore();
-        if (ContentState.sourceType === 'starships') {
-            ContentState.fightData = [...new Map(ContentState.fightData.map((item) => [item.starship.name, item])).values()];
-        }
     };
 
     useEffect(() => {
