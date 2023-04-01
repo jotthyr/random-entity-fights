@@ -7,7 +7,7 @@ import { EntityInput } from './inputs/entity.input';
 @Injectable()
 export class EntitiesService {
   constructor(
-    @InjectModel('Entity') private readonly entityModel: Model<Entity>,
+    @InjectModel('Entity') public readonly entityModel: Model<Entity>,
   ) {}
 
   async create(createEntityDto: EntityInput): Promise<Entity> {
@@ -15,29 +15,36 @@ export class EntitiesService {
     return await createdEntity.save();
   }
 
-  async findPeople(): Promise<Entity[]> {
-    const foundEntities = await this.entityModel.find().exec();
+  async findPeople(randomFoundEnitities): Promise<Entity[]> {
+    const twoUniquePeopleNames = [
+      ...new Set(randomFoundEnitities.map((x) => x.name)),
+    ].slice(0, 2);
 
-    const randomPeople = foundEntities
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 2);
+    const twoRandomPeopleObjects = randomFoundEnitities
+      .filter(
+        (x) =>
+          x.name === twoUniquePeopleNames[0] ||
+          x.name === twoUniquePeopleNames[1],
+      )
+      .filter(
+        (value, index, self) =>
+          index === self.findIndex((x) => x.name === value.name),
+      );
 
-    return randomPeople;
+    return twoRandomPeopleObjects;
   }
 
-  async findStarships(): Promise<Entity[]> {
-    const foundEntities = await this.entityModel.find().exec();
+  async findStarships(randomFoundEnitities): Promise<Entity[]> {
+    const twoRandomStarshipsNames = [
+      ...new Set(randomFoundEnitities.map((x) => x.starship.name)),
+    ].slice(0, 2);
 
-    const randomStarships = [
-      ...new Set(foundEntities.map((x) => x.starship.name)),
-    ]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 2);
-
-    return foundEntities.filter(
+    const twoRandomStarships = randomFoundEnitities.filter(
       (x) =>
-        x.starship.name === randomStarships[0] ||
-        x.starship.name === randomStarships[1],
+        x.starship.name === twoRandomStarshipsNames[0] ||
+        x.starship.name === twoRandomStarshipsNames[1],
     );
+
+    return twoRandomStarships;
   }
 }

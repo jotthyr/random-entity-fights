@@ -7,16 +7,16 @@ export const ScoreWrapper = styled('div')`
 `;
 
 export const LeftScoreElement = styled('h1')`
-    margin-left: 200px;
 `;
 
 export const ColonElement = styled('h1')`
+    position: absolute;
 `;
 
 export const RightScoreElement = styled('h1')`
-    margin-right: 200px;
 `;
 
 export const WinWrapper = styled('span')`
     color: red;
+    position: absolute;
 `;

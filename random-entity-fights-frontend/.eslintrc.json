@@ -26,7 +26,8 @@
         "indent": ["error", 4],
         "max-len": "off",
         "@typescript-eslint/indent": ["off"],
-        "import/no-named-as-default": 0
+        "import/no-named-as-default": 0,
+        "linebreak-style": 0
     },
     "settings": {
         "import/resolver": {

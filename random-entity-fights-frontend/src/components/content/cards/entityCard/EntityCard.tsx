@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { IEntityDetailsDataMutation } from '../../Content';
+import { NameWrapper } from './EntityCard.style';
 
 interface IEntityCardProps {
     fightData: IEntityDetailsDataMutation;
@@ -26,7 +27,9 @@ const EntityCard: React.FC<IEntityCardProps> = (props) => {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {sourceType ? props.fightData.name : props.fightData.starship.name}
+                        <NameWrapper>
+                            {sourceType ? props.fightData.name : props.fightData.starship.name}
+                        </NameWrapper>
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         {sourceType ? props.fightData.mass : props.starshipsCrew }

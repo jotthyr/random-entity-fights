@@ -33,29 +33,6 @@ const Content: React.FC = observer(() => {
 
     const entities = useQuery(ContentState.sourceType === 'people' ? LOAD_PEOPLE : LOAD_STARSHIPS);
 
-    const handleSetSourcePeople = () => {
-        ContentState.sourceType = 'people';
-        ContentState.score = [0, 0];
-        ContentState.winner = null;
-    };
-
-    const handleSetSourceStarships = () => {
-        ContentState.sourceType = 'starships';
-        ContentState.score = [0, 0];
-        ContentState.winner = null;
-    };
-
-    const handleRandomFight = () => {
-        entities.refetch();
-        if (ContentState.sourceType === 'people') {
-            ContentState.fightData = entities.data.entities;
-        } else if (ContentState.sourceType === 'starships') {
-            ContentState.fightData = entities.data.entitiesStarship;
-        }
-        ContentState.handleCrew();
-        ContentState.handleScore();
-    };
-
     useEffect(() => {
         const dataMutationArray: IParticularEntityDataMutation[] = DATA_MUTATION;
 
@@ -75,6 +52,57 @@ const Content: React.FC = observer(() => {
             });
         });
     }, []);
+
+    const setDefaultViewParameters = () => {
+        ContentState.fightData = [
+            {
+                name: '???',
+                img: '???',
+                mass: 0,
+                starship: {
+                    name: '???',
+                    starshipImg: '???',
+                },
+            },
+            {
+                name: '???',
+                img: '???',
+                mass: 0,
+                starship: {
+                    name: '???',
+                    starshipImg: '???',
+                },
+            },
+        ];
+        ContentState.score = [0, 0];
+        ContentState.winner = null;
+        ContentState.starshipsCrew = {
+            leftStarship: 0,
+            rightStarship: 0,
+        };
+    };
+
+    const handleSetSourcePeople = () => {
+        ContentState.sourceType = 'people';
+        setDefaultViewParameters();
+    };
+
+    const handleSetSourceStarships = () => {
+        ContentState.sourceType = 'starships';
+        setDefaultViewParameters();
+    };
+
+    const handleRandomFight = () => {
+        entities.refetch();
+        if (ContentState.sourceType === 'people') {
+            ContentState.fightData = entities.data.entities;
+        } else if (ContentState.sourceType === 'starships') {
+            ContentState.fightData = entities.data.entitiesStarship;
+        }
+        ContentState.handleCrew();
+        ContentState.handleScore();
+    };
+
 
     return (
         <ContentWrapper>

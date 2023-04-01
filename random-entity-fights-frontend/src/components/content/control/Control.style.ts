@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
 export const ControlWrapper = styled('div')`
-
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin-top: -300px;
 `;
 
 export const FightButton = styled('button')`

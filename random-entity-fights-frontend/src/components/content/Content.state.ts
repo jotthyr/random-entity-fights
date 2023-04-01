@@ -30,7 +30,7 @@ class ContentModel {
                 },
             },
             {
-                name: '????',
+                name: '???',
                 img: '???',
                 mass: 0,
                 starship: {
@@ -62,7 +62,7 @@ class ContentModel {
                 rightStarship,
             };
 
-            this.fightData = [...new Map(this.fightData.map((item) => [item.starship.name, item])).values()];
+            this.fightData = uniqueStarship;
         }
     };
 

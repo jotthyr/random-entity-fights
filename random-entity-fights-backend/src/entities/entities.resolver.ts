@@ -2,6 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { EntitiesService } from './entities.service';
 import { EntityType } from './dto/create-entity.dto';
 import { EntityInput } from './inputs/entity.input';
+import { shuffle } from 'lodash';
 
 @Resolver()
 export class EntitiesResolver {
@@ -12,14 +13,26 @@ export class EntitiesResolver {
     return 'hello';
   }
 
+  async readDataFromDatabase() {
+    const foundEntities = await this.entitiesService.entityModel.find().exec();
+
+    const randomFoundEnitities = shuffle(foundEntities);
+
+    return randomFoundEnitities;
+  }
+
   @Query(() => [EntityType])
   async entities() {
-    return this.entitiesService.findPeople();
+    const randomFoundEnitities = await this.readDataFromDatabase();
+
+    return this.entitiesService.findPeople(randomFoundEnitities);
   }
 
   @Query(() => [EntityType])
   async entitiesStarship() {
-    return this.entitiesService.findStarships();
+    const randomFoundEnitities = await this.readDataFromDatabase();
+
+    return this.entitiesService.findStarships(randomFoundEnitities);
   }
 
   @Mutation(() => EntityType)
